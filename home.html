@@ -15,14 +15,14 @@
  
         /* Header Styles */
         header {
-            background-color: #FF9800; /* Orange color */
+            background-color: #FF6701; /* Orange color */
             color: white;
             padding: 1rem;
             text-align: center;
         }
  
         header h1 {
-            margin: 10;
+            margin: 10px;
         }
  
         header nav {
@@ -44,7 +44,7 @@
         main {
             margin: 20px auto;
             padding: 20px;
-            max-width: 600px; /* Limit width for form */
+            max-width: 900px; /* Limit width for form */
             background-color: #ffffff; /* White background */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 10px; /* Rounded corners for form */
@@ -93,7 +93,6 @@
  
         /* Recommendations Cards */
         .recommendation-cards {
-            display: none; /* Initially hide cards */
             margin-top: 30px;
             display: flex;
             justify-content: space-between; /* Space out cards evenly */
@@ -104,7 +103,7 @@
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            width: 30%; /* Cards take 30% of the width */
+            width: 45%; /* Cards take 30% of the width */
             text-align: center;
         }
  
@@ -116,15 +115,6 @@
             }
         }
     </style>
-    <script>
-        function showRecommendations(event) {
-            event.preventDefault(); // Prevent form submission
- 
-            // Hide the form and show the recommendation cards
-            document.querySelector('.form-container').style.display = 'none';
-            document.querySelector('.recommendation-cards').style.display = 'flex';
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -136,37 +126,44 @@
             <a href="/profile">Profile</a>
         </nav>
     </header>
-   
+    
     <main>
         <h2>RECOMMENDATIONS</h2>
         <div class="form-container">
-            <form onsubmit="showRecommendations(event)">
-                <label for="allergy">Any allergies </label>
-                <input type="text" id="allergy" placeholder="Enter food allergies" />
-               
-                <label for="medicalStatus">Current medical status?</label>
-                <input type="text" id="medicalStatus" placeholder="Describe your medical status" />
-               
-               
+            <!-- Flask POST form -->
+            <form action="{{ url_for('recommendation_page') }}" method="post">
+                
+
+                <label for="medical_condition">Current medical status?</label>
+                <input type="text" id="medical_condition" name="medical_condition" placeholder="Describe your medical status" required />
+                
+                <label for="allergies">Any allergies</label>
+                <input type="text" id="allergies" name="allergies" placeholder="Enter food allergies" required />
+
+                <label for="currentdietplan">Current medical status?</label>
+                <input type="text" id="currentdietplan" name="currentdietplan" placeholder="Describe your current diet plans" required />
+                
+                <label for="currentexercises">Any allergies</label>
+                <input type="text" id="currentexercises" name="currentexercises" placeholder="Describe your exercise plans" required />
+                
                 <button type="submit">Submit</button>
             </form>
         </div>
- 
+
+        <!-- Flask recommendation results -->
+        {% if prediction %}
         <div class="recommendation-cards">
             <div class="card">
-                <h3>Diet Recommendation</h3>
-                <!--<p>Suggestions based on your health profile.</p>-->
+                
+                <div>{{ dietary_recommendations | safe }}</div>
             </div>
             <div class="card">
-                <h3>Workout Recommendation</h3>
-               <!--<p>Exercise plans tailored for you.</p>-->
+                
+                <div>{{ exercise_plan | safe }}</div>
             </div>
-            <div class="card">
-                <h3>Lifestyle Recommendation</h3>
-               
-            </div>
+            
         </div>
+        {% endif %}
     </main>
 </body>
 </html>
- 

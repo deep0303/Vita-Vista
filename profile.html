@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+      body {
+        background-color: #f5f5f5; /* Light background */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333; /* Darker text for contrast */
+      }
+
+      header {
+        background-color: #ff6701; /* Orange header */
+        padding: 20px;
+        text-align: center;
+        color: white;
+      }
+
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+
+      .profile-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+        color: #333; /* Dark text inside the container */
+      }
+
+      .profile-container h2 {
+        color: #ff6701; /* Orange color for headings */
+        margin-bottom: 20px;
+      }
+
+      .profile-pic {
+        background-color: #ddd; /* Placeholder for profile picture */
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+      }
+
+      .profile-container h3 {
+        color: grey; /* Grey text for secondary elements */
+        margin-top: 20px;
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .profile-container button {
+        background-color: #ff6701; /* Orange buttons */
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .profile-container button:hover {
+        background-color: #e05d01; /* Darker orange on hover */
+      }
+
+      footer {
+        text-align: center;
+        color: grey;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Health Insights</h1>
+      <nav>
+        <a href="/index">Dashboard</a>
+        <a href="/recommend">Recommendations</a>
+        <a href="/consultation">Consultation</a>
+        <a href="/profile">Profile</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="profile-container">
+        <div class="profile-pic"></div>
+        <!-- Placeholder for profile picture -->
+        <h1>{{ user.username }}'s Profile</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>Age: {{ user.age }}</p>
+        <p>Height: {{ user.height }}</p>
+        <p>Weight: {{ user.weight }}</p>
+        <p>Gender: {{ user.gender }}</p>
+
+        <div class="button-container">
+          <button onclick="alert('View Notifications')">Notifications</button>
+          <button onclick="alert('Open Settings')">Settings</button>
+          <button onclick="alert('Add Account')">Add Account</button>
+          <button onclick="alert('Logout')">Logout</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Health Insights</p>
+    </footer>
+  </body>
+</html>

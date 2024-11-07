@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Health Insights Platform</title>
+    <style>
+        /* Add basic styling for the cards */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: CFCFCF/*#e0e0e0**/; /* background */
+        }
+ 
+        header {
+            background-color: #FF6701; /* Header color changed to orange */
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+ 
+        nav a {
+            margin: 0 30px; /* Increased margin for spacing between links */
+            color: white;
+            text-decoration: none;
+            padding: 5px; /* Added padding for better clickability */
+        }
+ 
+        h1 {
+            margin: 10;
+        }
+ 
+        h2 {
+            text-align: center; /* Center the heading */
+            color: grey; /* Change heading color to grey */
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+ 
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+            gap: 20px;
+            padding: 20px;
+        }
+ 
+        .card {
+            background-color: #FF6701; /* Changed card background color to match header */
+            padding: 40px; /* Increased padding for larger cards */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 24px; /* Increased font size for better readability */
+            font-weight: bold;
+            color: white; /* Font color set to white */
+        }
+ 
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two cards per row on small screens */
+            }
+        }
+ 
+        @media (max-width: 480px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr; /* One card per row on very small screens */
+            }
+        }
+ 
+        /* Centering the last two cards */
+        .centered-cards {
+            display: contents; /* Allows the last three cards to align in the grid */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Health Insights</h1>
+        <nav>
+            <a href="/index">Dashboard</a>
+            <a href="/recommend">Recommendations</a>
+            <a href="/consultation">Consultation</a>
+            <a href="/profile">Profile</a>
+        </nav>
+    </header>
+   
+    <main>
+        <h2>DASHBOARD</h2> <!-- Centered heading -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <p>Heart Rate</p>
+                <p>{{ google_fit_data['heart_rate'] | default('No data available') }}</p>
+            </div>
+            <div class="card">
+                <p>Steps Counts</p>
+                <p>{{ google_fit_data['steps'] | default('No data available') }}</p>
+            </div>
+            <div class="card">
+                <p>Calories Burned</p>
+                <p>{{ google_fit_data['calories'] | default('No data available') }}</p>
+            </div>
+            <!-- New Cards for Sleep Duration, BMI, and Water Intake -->
+            <div class="centered-cards">
+                <div class="card">
+                    <p>Sleep Duration</p>
+                    <p>{{ google_fit_data['sleep'] | default('No data available') }}</p>
+                </div>
+                <div class="card">
+                    <p>BMI</p>
+                    <p>{{ user_data['bmi'] | default('No data available') }}</p>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+</body>
+</html>

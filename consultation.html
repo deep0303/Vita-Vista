@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation | Health Insights</title>
+    <style>
+        /* Add the CSS directly here */
+        body {
+            background-color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+ 
+        header {
+            background-color: #FF6701;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+ 
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+ 
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+ 
+        .consultation-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+ 
+        h2 {
+            color: #FF6701;
+            margin-bottom: 20px;
+        }
+ 
+        .consultation-container label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+ 
+        .consultation-container select,
+        .consultation-container input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+ 
+        .consultation-container button {
+            background-color: #FF6701;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+ 
+        .consultation-container button:hover {
+            background-color: #e05d01;
+        }
+ 
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+ 
+        ul li {
+            text-align: left;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Health Insights</h1>
+        <nav>
+            <a href="/index">Dashboard</a>
+            <a href="/recommend">Recommendations</a>
+            <a href="/consultation">Consultation</a>
+            <a href="/profile">Profile</a>
+        </nav>
+    </header>
+   
+    <main>
+        <div class="consultation-container">
+            <h2>Book a Meeting</h2>
+            <form>
+                <label for="expert">Select Expert</label>
+                <select id="expert" name="expert">
+                    <option value="dr-john">Dr. John Doe</option>
+                    <option value="dr-jane">Dr. Jane Smith</option>
+                    <option value="dr-emily">Dr. Emily White</option>
+                </select>
+ 
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+ 
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time" required>
+ 
+                <button type="submit">Book Meeting</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
