@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .card h2 {
+            margin: 0;
+            color: #555;
+        }
+
+        .chat-box {
+            display: none;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-box input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-box button {
+            padding: 10px 20px;
+            background-color: #ffa200;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .response {
+            display: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Get Your Recommendation</h1>
+    <div class="card" id="diet-card" onclick="getRecommendation('diet')">
+        <h2>Diet Recommendation</h2>
+    </div>
+    <div class="card" id="workout-card" onclick="getRecommendation('workout')">
+        <h2>Workout Recommendation</h2>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+        <p id="recommendation-text"></p>
+        <p>Can you follow this recommendation?</p>
+        <button onclick="handleChatResponse('yes')">Yes</button>
+        <button onclick="handleChatResponse('no')">No</button>
+        <div id="why-box" class="response">
+            <p>Please tell us why:</p>
+            <input type="text" id="why-input" placeholder="e.g., I am vegetarian">
+            <button onclick="submitReason()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let recommendations = {
+    diet: [
+        'Eat more fruits and vegetables.',
+        'Include whole grains in your diet.',
+        'Consider adding more plant-based protein.',
+        'Try meal prepping to ensure healthy eating.'
+    ],
+    workout: [
+        'Do 30 minutes of cardio daily.',
+        'Incorporate strength training exercises.',
+        'Consider a yoga or Pilates routine.',
+        'Take a daily walk or run for 30 minutes.'
+    ]
+};
+
+let currentRecommendation = '';
+
+function getRecommendation(type) {
+    currentRecommendation = type;
+    document.getElementById('recommendation-text').innerText = `Here is a ${type} recommendation for you: ${getRandomRecommendation(type)}`;
+    document.getElementById('chat-box').style.display = 'block';
+}
+
+function getRandomRecommendation(type) {
+    const options = recommendations[type];
+    return options[Math.floor(Math.random() * options.length)];
+}
+
+function handleChatResponse(response) {
+    if (response === 'no') {
+        document.getElementById('why-box').style.display = 'block';
+    } else {
+        alert("Great! Keep following the recommendation!");
+        resetChat();
+    }
+}
+
+function submitReason() {
+    const reason = document.getElementById('why-input').value.toLowerCase();
+    let updatedRecommendation = '';
+
+    if (reason.includes('vegetarian')) {
+        updatedRecommendation = 'Since you are vegetarian, here is a new diet recommendation: Eat more legumes and plant-based protein.';
+    } else if (reason.includes('no equipment')) {
+        updatedRecommendation = 'You can try bodyweight exercises such as push-ups, squats, or lunges.';
+    } else if (reason.includes('no time')) {
+        updatedRecommendation = `If you're short on time, consider breaking up your workout into small intervals throughout the day.`;
+    } else {
+        updatedRecommendation = `Here is another recommendation: ${getRandomRecommendation(currentRecommendation)}`;
+    }
+
+    alert(updatedRecommendation);
+    document.getElementById('recommendation-text').innerText = updatedRecommendation;
+    resetChat();
+}
+
+function resetChat() {
+    document.getElementById('chat-box').style.display = 'none';
+    document.getElementById('why-box').style.display = 'none';
+    document.getElementById('why-input').value = '';
+}
+
+</script>
+
+</body>
+</html>
